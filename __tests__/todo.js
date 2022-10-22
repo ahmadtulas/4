@@ -44,7 +44,4 @@ describe("To do list test suits", () => {
   test("Check retrieval of due later items", () => {
     expect(dueLater().length).toEqual(2);
   });
-  // test("All item",()=>{
-  //     expect(all).toBe(4);
-  // })
 });
