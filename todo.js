@@ -52,21 +52,15 @@ const todoList = () => {
     // ..
     // ..
     // return OUTPUT_STRING
-    const newArray = list.map(
-      (item) =>
-        `${item.completed ? "[x]" : "[ ]"} ${item.title} ${
-          item.dueDate === new Date().toLocaleDateString("en-CA")
-            ? ""
-            : item.dueDate
-        }`
-    );
-    //return newArray;
 
-    //let myString =  JSON.stringify(newArray);
-
-    let my = String(newArray);
-    my = my.replace(",", "\n");
-    return my;
+    return list
+      .map(
+        (todo) =>
+          `${todo.completed ? "[x]" : "[ ]"} ${todo.title.trim()} ${
+            todo.dueDate == today ? "" : todo.dueDate.trim()
+          }`
+      )
+      .join("\n");
   };
 
   return {
@@ -86,18 +80,27 @@ const todoList = () => {
 
 const todos = todoList();
 
-const formattedDate = (d) => {
-  return d.toISOString().split("T")[0];
-};
+// const formattedDate = (d) => {
+//   return d.toISOString().split("T")[0];
+// };
 
-var dateToday = new Date();
-const today = formattedDate(dateToday);
-const yesterday = formattedDate(
-  new Date(new Date().setDate(dateToday.getDate() - 1))
-);
-const tomorrow = formattedDate(
-  new Date(new Date().setDate(dateToday.getDate() + 1))
-);
+// var dateToday = new Date();
+// const today = formattedDate(dateToday);
+// const yesterday = formattedDate(
+//   new Date(new Date().setDate(dateToday.getDate() - 1))
+// );
+// const tomorrow = formattedDate(
+//   new Date(new Date().setDate(dateToday.getDate() + 1))
+// );
+
+const todayDate = new Date();
+const oneDay = 60 * 60 * 24 * 1000;
+const yesterdayDate = new Date(todayDate.getTime() - 1 * oneDay);
+const tomorrowDate = new Date(todayDate.getTime() + 1 * oneDay);
+
+const today = todayDate.toLocaleDateString("en-CA");
+const yesterday = yesterdayDate.toLocaleDateString("en-CA");
+const tomorrow = tomorrowDate.toLocaleDateString("en-CA");
 
 module.exports = todoList();
 
