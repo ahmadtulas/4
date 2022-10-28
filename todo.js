@@ -102,7 +102,7 @@ const today = todayDate.toLocaleDateString("en-CA");
 const yesterday = yesterdayDate.toLocaleDateString("en-CA");
 const tomorrow = tomorrowDate.toLocaleDateString("en-CA");
 
-module.exports = todoList();
+module.exports = todoList;
 
 todos.add({ title: "Submit assignment", dueDate: yesterday, completed: false });
 todos.add({ title: "Pay rent", dueDate: today, completed: true });
